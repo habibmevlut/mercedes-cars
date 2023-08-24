@@ -1,33 +1,75 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>Cars</span>
+        <div style="display: flex; justify-content: end">
+            <button mat-icon-button color="primary" (click)="showCarUpdateDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
+<div class="scrollable-content">
+    <mat-table [dataSource]="cars" *ngIf="cars && cars.length > 0">
+        <!-- Id -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+        <!--Car ID-->
+        <ng-container matColumnDef="carId">
+            <mat-header-cell *matHeaderCellDef>CARID</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.carId}} </mat-cell>
+        </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
+        <!--In Stock-->
+        <ng-container matColumnDef="inStock">
+            <mat-header-cell *matHeaderCellDef>INSTOCK</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-icon *ngIf="element.inStock === true" style="color: #5ca75f">check_circle</mat-icon>
+                <mat-icon *ngIf="element.inStock === false" style="color: #d03439">check_circle</mat-icon>
+            </mat-cell>
+        </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
+        <!--HP-->
+        <ng-container matColumnDef="hp">
+            <mat-header-cell *matHeaderCellDef>HP</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.hp}} </mat-cell>
+        </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+        <!--Price-->
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef>PRICE</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+        </ng-container>
 
+        <!--Color-->
+        <ng-container matColumnDef="color">
+            <mat-header-cell *matHeaderCellDef>COLOR</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-icon [style.color]="'#'+element.color.code">directions_car</mat-icon>
+            </mat-cell>
+        </ng-container>
+
+        <!--Process-->
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element" style="display: flex; justify-content: end">
+                <div class="btn-group flex-btn-group-container">
+                    <button class="mat-primary" mat-icon-button (click)="showCarUpdateDialog(element)">
+                        <mat-icon fontIcon="edit" color="primary"></mat-icon>
+                    </button>
+
+                    <button class="mat-primary" mat-icon-button (click)="delete(element)">
+                        <mat-icon fontIcon="delete" color="warn"></mat-icon>
+                    </button>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+</div>

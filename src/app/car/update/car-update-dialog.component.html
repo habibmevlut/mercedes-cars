@@ -1,1 +1,115 @@
-<p>car-update-dialog works!</p>
+<header style="display: flex; justify-content: space-between; align-items: baseline; padding: 5px 25px">
+    <h2 class="mat-h2 mb-0">Create or Edit Car</h2>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon color="primary">close</mat-icon>
+    </button>
+</header>
+
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col-lg-12">
+            <form [formGroup]="creatAndEditCarForm" *ngIf="creatAndEditCarForm">
+
+                <mat-form-field appearance="outline" *ngIf="isUpdate">
+                    <mat-label>Id</mat-label>
+                    <input name="id" id="field_id" formControlName="id" matInput/>
+                </mat-form-field>
+
+                <!--Car Id--->
+                <mat-form-field appearance="outline">
+                    <mat-label>Car Id</mat-label>
+                    <input name="carId" id="field_carId" formControlName="carId" matInput required/>
+                    <mat-error
+                            *ngIf="creatAndEditCarForm.get('carId')!.invalid && (creatAndEditCarForm.get('carId')!.dirty || creatAndEditCarForm.get('carId')!.touched)">
+                        <small
+                                class="form-text text-danger"
+                                *ngIf="creatAndEditCarForm.get('carId')?.errors?.['required']">
+                            This field is required.
+                        </small>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--HP-->
+                <mat-form-field appearance="outline">
+                    <mat-label>Hp</mat-label>
+                    <input name="hp" id="field_hp" formControlName="hp" (keypress)="numberOnly($event)" matInput
+                           required/>
+                    <mat-error
+                            *ngIf="creatAndEditCarForm.get('hp')!.invalid && (creatAndEditCarForm.get('hp')!.dirty || creatAndEditCarForm.get('hp')!.touched)">
+                        <small
+                                class="form-text text-danger"
+                                *ngIf="creatAndEditCarForm.get('hp')?.errors?.['required']">
+                            This field is required.
+                        </small>
+                        <small
+                                class="form-text text-danger"
+                                *ngIf="creatAndEditCarForm.get('hp')?.errors?.['range']">
+                            HP must be between 100 and 550.
+                        </small>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--Price-->
+                <mat-form-field appearance="outline">
+                    <mat-label>Price</mat-label>
+                    <input name="price" id="field_price" formControlName="price" matInput required/>
+                    <mat-error
+                            *ngIf="creatAndEditCarForm.get('price')!.invalid && (creatAndEditCarForm.get('price')!.dirty || creatAndEditCarForm.get('price')!.touched)">
+                        <small
+                                class="form-text text-danger"
+                                *ngIf="creatAndEditCarForm.get('price')?.errors?.['required']">
+                            This field is required.
+                        </small>
+                    </mat-error>
+                </mat-form-field>
+
+                <!--Color-->
+                <mat-form-field appearance="outline">
+                    <mat-label>Color</mat-label>
+                    <input
+                            matInput
+                            formControlName="color"
+                            [matAutocomplete]="colorAC"
+                            placeholder="Color"
+                            tabindex="10"
+                            required
+                    />
+                    <mat-autocomplete #colorAC [displayWith]="displayFn" autoActiveFirstOption>
+                        <mat-option [value]="colorOption" *ngFor="let colorOption of filteredColors | async">
+                            {{ colorOption.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error
+                            *ngIf="creatAndEditCarForm.get('color')!.invalid && (creatAndEditCarForm.get('color')!.dirty || creatAndEditCarForm.get('color')!.touched)"
+                    >
+                        <small
+                                class="form-text text-danger"
+                                *ngIf="creatAndEditCarForm.get('color')?.errors?.['required']"
+                        >
+                            This field is required.
+                        </small>
+                    </mat-error>
+                    <button mat-icon-button matSuffix (click)="creatAndEditCarForm.get('color')?.setValue(null)"
+                            type="button">
+                        <mat-icon color="primary">close</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <!--In Stock-->
+                <mat-checkbox formControlName="inStock">In Stock</mat-checkbox>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div mat-dialog-actions style="display: flex; justify-content: end">
+    <button mat-dialog-close color="warn" mat-button>
+        <span>Cancel</span>
+    </button>
+    <button *ngIf="creatAndEditCarForm" (click)="save()" mat-stroked-button color="primary"
+            [disabled]="creatAndEditCarForm.invalid">
+        <span>Save</span>
+    </button>
+</div>

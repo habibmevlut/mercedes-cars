@@ -6,7 +6,7 @@ export interface ICar {
   inStock?: boolean;
   hp?: number;
   price?: number;
-  colo?: IColor;
+  color?: IColor;
 }
 
 export type NewCar = Omit<ICar, 'id'> & { id: null };

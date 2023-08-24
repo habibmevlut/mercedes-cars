@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.scrollable-content {
+  overflow: auto;
+}
+
+.edit-icon {
+  color: #4758B8;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+:host ::ng-deep {
+  mat-toolbar {
+    background-color: #fff;
+  }
+
+  mat-toolbar-row {
+    justify-content: space-between;
+  }
+}

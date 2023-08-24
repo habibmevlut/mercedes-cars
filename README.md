@@ -6,6 +6,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+## Backend server API
+
+For the backend server API, I used mockapi.io create two end points. You can see the API documentation from this link: https://mockapi.io/docs. 
+* The API endpoints are.
+   * https://64e52804c555638029142ff8.mockapi.io/api/cars. 
+   * https://64e52804c555638029142ff8.mockapi.io/api/colors.
+
+You can see the data from this endpoint.
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
