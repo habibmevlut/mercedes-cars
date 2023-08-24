@@ -21,33 +21,39 @@ import { CurrencyPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ApplicationConfigService } from '../core/config/application-config.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CarComponent,
-    CarUpdateDialogComponent,
-    ColorComponent,
-    ColorUpdateDialogComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatInputModule,
-    MatToolbarModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatCheckboxModule,
-  ],
-  providers: [CurrencyPipe, MatSnackBar],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        CarComponent,
+        CarUpdateDialogComponent,
+        ColorComponent,
+        ColorUpdateDialogComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatInputModule,
+        MatToolbarModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatCheckboxModule,
+    ],
+    providers: [CurrencyPipe, MatSnackBar],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
+    constructor(
+        applicationConfigService: ApplicationConfigService,
+    ) {
+        applicationConfigService.setEndpointPrefix('https://64e52804c555638029142ff8.mockapi.io/')
+    }
 }

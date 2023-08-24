@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApplicationConfigService {
-  private endpointPrefix = 'https://64e52804c555638029142ff8.mockapi.io/';
+  private endpointPrefix = ' ';
 
   setEndpointPrefix(endpointPrefix: string): void {
     this.endpointPrefix = endpointPrefix;
