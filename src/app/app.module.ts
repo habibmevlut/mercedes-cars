@@ -22,6 +22,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApplicationConfigService } from '../core/config/application-config.service';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
     declarations: [
@@ -31,22 +32,23 @@ import { ApplicationConfigService } from '../core/config/application-config.serv
         ColorComponent,
         ColorUpdateDialogComponent
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatTableModule,
-        MatButtonModule,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        MatDialogModule,
-        MatInputModule,
-        MatToolbarModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatCheckboxModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatInputModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatCardModule,
+  ],
     providers: [CurrencyPipe, MatSnackBar],
     bootstrap: [AppComponent]
 })

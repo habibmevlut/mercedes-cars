@@ -1,75 +1,85 @@
 <mat-toolbar>
-    <mat-toolbar-row>
-        <span>Cars</span>
-        <div style="display: flex; justify-content: end">
-            <button mat-icon-button color="primary" (click)="showCarUpdateDialog()">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
-    </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span>Cars</span>
+    <div style="display: flex; justify-content: end">
+      <button mat-icon-button color="primary" (click)="showCarUpdateDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
 
+<mat-card *ngIf="!isLoading && (!cars || cars.length === 0)">
+  <mat-card-content>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100px;">
+      <span>No data available</span>
+    </div>
+  </mat-card-content>
+</mat-card>
 
 <div class="scrollable-content">
-    <mat-table [dataSource]="cars" *ngIf="cars && cars.length > 0">
-        <!-- Id -->
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-        </ng-container>
+  <div style="display: flex; justify-content: center" *ngIf="isLoading">
+    <mat-spinner diameter="70" strokeWidth="2"></mat-spinner>
+  </div>
+  <mat-table [dataSource]="cars" *ngIf="cars && cars.length > 0">
+    <!-- Id -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
 
-        <!--Car ID-->
-        <ng-container matColumnDef="carId">
-            <mat-header-cell *matHeaderCellDef>CARID</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.carId}} </mat-cell>
-        </ng-container>
+    <!--Car ID-->
+    <ng-container matColumnDef="carId">
+      <mat-header-cell *matHeaderCellDef>CARID</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.carId}} </mat-cell>
+    </ng-container>
 
-        <!--In Stock-->
-        <ng-container matColumnDef="inStock">
-            <mat-header-cell *matHeaderCellDef>INSTOCK</mat-header-cell>
-            <mat-cell *matCellDef="let element">
-                <mat-icon *ngIf="element.inStock === true" style="color: #5ca75f">check_circle</mat-icon>
-                <mat-icon *ngIf="element.inStock === false" style="color: #d03439">check_circle</mat-icon>
-            </mat-cell>
-        </ng-container>
+    <!--In Stock-->
+    <ng-container matColumnDef="inStock">
+      <mat-header-cell *matHeaderCellDef>INSTOCK</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.inStock === true" style="color: #5ca75f">check_circle</mat-icon>
+        <mat-icon *ngIf="element.inStock === false" style="color: #d03439">check_circle</mat-icon>
+      </mat-cell>
+    </ng-container>
 
-        <!--HP-->
-        <ng-container matColumnDef="hp">
-            <mat-header-cell *matHeaderCellDef>HP</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.hp}} </mat-cell>
-        </ng-container>
+    <!--HP-->
+    <ng-container matColumnDef="hp">
+      <mat-header-cell *matHeaderCellDef>HP</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.hp}} </mat-cell>
+    </ng-container>
 
-        <!--Price-->
-        <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef>PRICE</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
-        </ng-container>
+    <!--Price-->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>PRICE</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+    </ng-container>
 
-        <!--Color-->
-        <ng-container matColumnDef="color">
-            <mat-header-cell *matHeaderCellDef>COLOR</mat-header-cell>
-            <mat-cell *matCellDef="let element">
-                <mat-icon [style.color]="'#'+element.color.code">directions_car</mat-icon>
-            </mat-cell>
-        </ng-container>
+    <!--Color-->
+    <ng-container matColumnDef="color">
+      <mat-header-cell *matHeaderCellDef>COLOR</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-icon [style.color]="'#'+element.color.code">directions_car</mat-icon>
+      </mat-cell>
+    </ng-container>
 
-        <!--Process-->
-        <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let element" style="display: flex; justify-content: end">
-                <div class="btn-group flex-btn-group-container">
-                    <button class="mat-primary" mat-icon-button (click)="showCarUpdateDialog(element)">
-                        <mat-icon fontIcon="edit" color="primary"></mat-icon>
-                    </button>
+    <!--Process-->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element" style="display: flex; justify-content: end">
+        <div class="btn-group flex-btn-group-container">
+          <button class="mat-primary" mat-icon-button (click)="showCarUpdateDialog(element)">
+            <mat-icon fontIcon="edit" color="primary"></mat-icon>
+          </button>
 
-                    <button class="mat-primary" mat-icon-button (click)="delete(element)">
-                        <mat-icon fontIcon="delete" color="warn"></mat-icon>
-                    </button>
-                </div>
-            </mat-cell>
-        </ng-container>
+          <button class="mat-primary" mat-icon-button (click)="delete(element)">
+            <mat-icon fontIcon="delete" color="warn"></mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
 </div>
