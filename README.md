@@ -37,5 +37,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
+## Car List
 ![image](https://github.com/habibmevlut/mercedes-cars/assets/13496352/79238059-27ab-42c3-bfb1-cf075b6008ad)
+
+## Car Add Or Edit
+![image](https://github.com/habibmevlut/mercedes-cars/assets/13496352/821d47cd-c766-4091-a8b9-caf3048db2f6)
+
+
+## Color List
+![image](https://github.com/habibmevlut/mercedes-cars/assets/13496352/8e27ba6f-44d0-4267-97f0-0dd62dd4a269)
+
+## Color Add Or Edit
+![image](https://github.com/habibmevlut/mercedes-cars/assets/13496352/7d5b973e-f2a9-4ed0-a04c-e879dc3056c2)
+
+
 
