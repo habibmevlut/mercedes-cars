@@ -13,7 +13,7 @@ For the backend server API, I used mockapi.io create two end points. You can see
    * https://64e52804c555638029142ff8.mockapi.io/api/cars. 
    * https://64e52804c555638029142ff8.mockapi.io/api/colors.
 
-You can see the data from this endpoint.
+You can see the data from these endpoints.
 
 
 ## Code scaffolding
