@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <span>Colors</span>
     <div style="display: flex; justify-content: end">
-      <button mat-icon-button color="primary" (click)="showColorUpdateDialog()">
+      <button mat-icon-button color="primary" (click)="showColorUpdateDialog()" matTooltip="Add New Color">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -55,11 +55,11 @@
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element" style="display: flex; justify-content: end">
         <div class="btn-group flex-btn-group-container">
-          <button class="mat-primary" mat-icon-button (click)="showColorUpdateDialog(element)">
+          <button class="mat-primary" mat-icon-button (click)="showColorUpdateDialog(element)" matTooltip="Edit Item">
             <mat-icon fontIcon="edit" color="primary"></mat-icon>
           </button>
 
-          <button class="mat-primary" mat-icon-button (click)="delete(element)">
+          <button class="mat-primary" mat-icon-button (click)="delete(element)" matTooltip="Delete">
             <mat-icon fontIcon="delete" color="warn"></mat-icon>
           </button>
         </div>

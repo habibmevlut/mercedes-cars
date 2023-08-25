@@ -23,6 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ApplicationConfigService } from '../core/config/application-config.service';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [
@@ -48,6 +49,7 @@ import { MatCardModule } from '@angular/material/card';
     MatAutocompleteModule,
     MatCheckboxModule,
     MatCardModule,
+    MatTooltipModule,
   ],
     providers: [CurrencyPipe, MatSnackBar],
     bootstrap: [AppComponent]
